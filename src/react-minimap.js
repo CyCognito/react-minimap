@@ -46,7 +46,7 @@ export class Minimap extends React.Component {
     this.downState = false
     this.initState = false
   }
-  
+
   componentDidMount() {
     const {onMountCenterOnX, onMountCenterOnY} = this.props
     setTimeout(() => this.synchronize({centerOnX: onMountCenterOnX, centerOnY:onMountCenterOnY}));
@@ -83,7 +83,7 @@ export class Minimap extends React.Component {
 
     let ratioX = width / scrollWidth;
     let ratioY = height / scrollHeight;
-    
+
     if (keepAspectRatio) {
       if (ratioX < ratioY) {
         ratioY = ratioX
@@ -173,7 +173,7 @@ export class Minimap extends React.Component {
     this.l += dx;
     this.t += dy;
 
-    // Sanity checks: 
+    // Sanity checks:
     this.l = (this.l < 0 ? 0 : this.l)
     this.t = (this.t < 0 ? 0 : this.t)
 
@@ -182,7 +182,7 @@ export class Minimap extends React.Component {
     const left = this.l / coefX;
     const top = this.t / coefY;
 
-    
+
     this.source.scrollLeft = Math.round( left );
     this.source.scrollTop = Math.round( top );
     this.redraw();
@@ -203,7 +203,7 @@ export class Minimap extends React.Component {
     const lX = scroll[ 0 ] * scaleX;
     const lY = scroll[ 1 ] * scaleY;
 
-    // Ternary operation includes sanity check 
+    // Ternary operation includes sanity check
     this.w = (Math.round( lW ) > this.state.width) ? this.state.width : Math.round( lW );
     this.h = (Math.round( lH ) > this.state.height) ? this.state.height : Math.round( lH );
     this.l = Math.round( lX );
@@ -224,15 +224,15 @@ export class Minimap extends React.Component {
 
   redraw() {
     this.setState({
-      ...this.state, 
+      ...this.state,
       viewport: (
-        <div 
-          className="minimap-viewport" 
+        <div
+          className="minimap-viewport"
           style={{
             width : this.w,
             height : this.h,
             left : this.l,
-            top : this.t      
+            top : this.t
           }}
         />
       )
@@ -243,27 +243,28 @@ export class Minimap extends React.Component {
   render() {
     const {width, height} = this.state
 
-    return (  
-      <div 
+    return (
+      <div
         className={"minimap-container " + this.props.className}
-        onScroll={this.synchronize} 
+        onScroll={this.synchronize}
         ref={(source) => {this.source = source;}}
       >
-        <div 
+        <div
           className="minimap"
-          style={{            
-            width: `${width}px`, 
+          style={{
+            width: `${width}px`,
             height: `${height}px`,
           }}
-          
-          ref={(minimap) => { this.minimap = minimap; }} 
 
-          onMouseDown={this.down} 
-          onTouchStart={this.down} 
+          ref={(minimap) => { this.minimap = minimap; }}
+
+          onMouseDown={this.down}
+          onTouchStart={this.down}
           onTouchMove={this.move}
           onMouseMove={this.move}
           onTouchEnd={this.up}
           onMouseUp={this.up}
+          onMouseOut={this.up}
         >
           {this.state.viewport}
           {this.state.children}
