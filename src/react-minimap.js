@@ -123,7 +123,8 @@ export class Minimap extends React.Component {
 
   down( e ) {
     const pos = this.minimap.getBoundingClientRect()
-
+    e.preventDefault();
+    e.stopPropagation();
     this.x = Math.round( pos.left + this.l + this.w / 2 );
     this.y = Math.round( pos.top + this.t + this.h / 2 );
 
@@ -132,7 +133,9 @@ export class Minimap extends React.Component {
   }
 
   up() {
-    this.downState = false
+    this.downState = false;
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   move( e ) {
@@ -143,6 +146,7 @@ export class Minimap extends React.Component {
     let event;
 
     e.preventDefault();
+    e.stopPropagation();
     if ( e.type.match( /touch/ ) ) {
       if ( e.touches.length > 1 ) {
         return;
