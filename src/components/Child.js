@@ -10,11 +10,11 @@ export class Child extends React.Component {
     top: PropTypes.number.isRequired,
     left: PropTypes.number.isRequired,
     node: PropTypes.any,
-    clssName: PropTypes.string
+    className: PropTypes.string
   };
 
   render() {
-    const {width, height, left, top, clssName} = this.props
+    const {width, height, left, top, className} = this.props
     return (
       <div
         style={{
@@ -24,7 +24,7 @@ export class Child extends React.Component {
           left,
           top,
         }}
-        className={"minimap-children ".concat(clssName)}
+        className={"minimap-children ".concat(className)}
 
       />
     );
