@@ -115,6 +115,7 @@ export class Minimap extends React.Component {
             left={Math.round( xM )}
             top={Math.round( yM )}
             node={node}
+            className={node.dataset.altClass}
           />
         )
       })
