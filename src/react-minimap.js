@@ -132,7 +132,7 @@ export class Minimap extends React.Component {
     this.move( e );
   }
 
-  up() {
+  up(e) {
     this.downState = false;
     e.preventDefault();
     e.stopPropagation();
