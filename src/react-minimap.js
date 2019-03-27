@@ -269,7 +269,7 @@ export class Minimap extends React.Component {
           onMouseMove={this.move}
           onTouchEnd={this.up}
           onMouseUp={this.up}
-          // onMouseOut={this.up}
+          onMouseOut={this.up}
         >
           {this.state.viewport}
           {this.state.children}
